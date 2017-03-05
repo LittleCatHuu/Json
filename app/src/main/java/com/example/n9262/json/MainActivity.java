@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
     Button btn5;
     @BindView(R.id.btn6)
     Button btn6;
-    private TextView textView;
-    private String baseUrl = "http://www.baidu.com";
-    private String str = "";
-    private Handler handler = new Handler() {
+    public TextView textView;
+    public String baseUrl = "http://www.baidu.com";
+    public String str = "";
+    public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             //  返回的字符串 直接是个数组
@@ -79,11 +80,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        init();
-    }
-
-    private void init() {
-
     }
 
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6})
@@ -95,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 str="";
                 // {"username":"zms",age:23,"addr","from china"};
                 String json="{\"username\":\"zms\",\"age\":43,\"addr\":\"江西省高安市村前镇\"}";
-                JSONObject jsonObject = null;
+                JSONObject jsonObject;
                 try {
                     jsonObject = new JSONObject(json);
                     str="名字:"+jsonObject.getString("username")+"年薪:"+jsonObject.getString("age")+jsonObject.getString("addr")+"\n";
@@ -115,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     // 这种也属于 对象里有数组   {"json":[{"username":"zms","date":"2011年"},{"username":"ivy","date","2012年"}]}
                     json = "{\"username\":\"张木生\",age:11,\"jicheng\":[{\"zhengshu\":\"PMP\",\"date\":\"2011年\"},{\"zhengshu\":\"信息系统项目管理师\",\"date\":\"2012年\"}],\"addr\":\"江西\"}";
 
-                    jsonObject = null;
                     jsonObject = new JSONObject(json);
                     str="名字:"+jsonObject.getString("username");
                     str=str+"工龄:"+jsonObject.getString("age")+"证书:";
@@ -237,5 +232,11 @@ public class MainActivity extends AppCompatActivity {
             handler.sendMessage(msg2);
             super.run();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
     }
 }
