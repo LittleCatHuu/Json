@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6})
     public void onClick(View view) {
         switch (view.getId()) {
+            //直接一个对象
             case R.id.btn1:
                 textView.setText(" ");
                 str="";
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 break;
+            //对象里有数组
             case R.id.btn2:
                 textView.setText("");
                 str="";
@@ -132,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 break;
+            //直接一个数组
             case R.id.btn3:
                 Log.v("zms","响应4");
                 textView.setText("");
@@ -154,15 +157,16 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 break;
+            //数组里有数组
             case R.id.btn4:
                 textView.setText("");
                 str="";
                 //  返回的字符串 直接是个数组
-   /*   [
-      {"devid":"1234567800","gps":[{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189"},{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189" }],"devname":"赣01"},
-       {"devid":"1234567800","gps":[{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189"},{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189" }],"devname":"赣92"},
-       {"devid":"1234567800","gps":[{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189"},{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189" }],"devname":"赣43"},
-       ], */
+               /*   [
+                  {"devid":"1234567800","gps":[{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189"},{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189" }],"devname":"赣01"},
+                   {"devid":"1234567800","gps":[{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189"},{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189" }],"devname":"赣92"},
+                   {"devid":"1234567800","gps":[{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189"},{"time":"2014-11-12","latitude":"29.4963","longitude":"116.189" }],"devname":"赣43"},
+                   ], */
                 json="["+
                         "{\"devid\":\"1234567800\",\"gps\":[{\"time\":\"2014-11-12\",\"latitude\":\"29.4963\",\"longitude\":\"116.189\"},{\"time\":\"2014-11-12\",\"latitude\":\"29.4963\",\"longitude\":\"116.189\" }],\"devname\":\"赣01\"},"+
                         " {\"devid\":\"1234567800\",\"gps\":[{\"time\":\"2014-11-12\",\"latitude\":\"29.4963\",\"longitude\":\"116.189\"},{\"time\":\"2014-11-12\",\"latitude\":\"29.4963\",\"longitude\":\"116.189\" }],\"devname\":\"赣92\"},"+
@@ -193,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 break;
-
+            //httpclient访问网络返回json
             case R.id.btn5:
                 textView.setText("");
                /*从安卓3.0以后，就不允许在主线程中直接访问网络，必须在子线程中访问
